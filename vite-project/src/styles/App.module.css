@@ -1,0 +1,13 @@
+.container {
+  background-color: #dacdcd;
+  max-width: 900px;
+  border-radius: 10px;      
+  padding: 20px;
+  margin: 70px auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

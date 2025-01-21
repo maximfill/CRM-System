@@ -1,0 +1,10 @@
+.containerStatus {
+  display: flex;
+  justify-content: space-between;
+  max-width: 770px;
+}
+
+.symbolStatus {
+  font-size: 30px;
+  color: rgb(82, 82, 218);
+}
