@@ -1,9 +1,15 @@
 import styles from '../styles/ButtonAddTask.module.css';
-const ButtonAddTask =() => {
 
+interface ButtonAddTaskProps {
+  newAddTask: () => void;
+}
+
+const ButtonAddTask: React.FC<ButtonAddTaskProps> = ({ newAddTask }) => {
   return (
-    <button className={styles.buttonAddTask}>Add</button>
-  )
+    <button type="button" onClick={newAddTask} className={styles.buttonAddTask}>
+      Add
+    </button>
+  );
 };
 
 export default ButtonAddTask;

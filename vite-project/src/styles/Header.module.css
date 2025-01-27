@@ -4,3 +4,14 @@
   display: flex;
   justify-content: space-between;
 }
+
+.textarea {
+  width: 300px;
+  height: 30px;
+  font-size: 20px;
+  outline: none;
+  background-color: #dacdcd;
+  resize: none;
+  border: none;
+  padding: 0;
+}

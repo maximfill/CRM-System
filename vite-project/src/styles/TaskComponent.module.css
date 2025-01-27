@@ -6,6 +6,7 @@
   padding: 10px;
   background-color: aliceblue;
   border-radius: 5px;
+  /* display: none; */
 }
 
 .textarea {
@@ -21,6 +22,7 @@
 
 .input {
   padding: 0;
+  font-size: 20px;
 }
 
 .icon {
@@ -39,5 +41,15 @@
   padding: 0;
   border: none;
   cursor: pointer;
+}
+
+.listTask {
+  display: flex;
+  flex-direction: column;
+}
+
+.span {
+  font-size: 30px;
+  color: rgb(9, 9, 9);
 }
 
