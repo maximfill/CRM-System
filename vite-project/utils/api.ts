@@ -1,10 +1,10 @@
-export interface TodoResponse {
+export interface Task {
   title: string;
   completed: boolean;
   id: number;
 }
 
-export const submitData = async (task: string): Promise<TodoResponse> => {
+export const submitData = async (task: string): Promise<Task> => {
   const response = await fetch("https://easydev.club/api/v2/todos", {
     method: "POST",
     body: JSON.stringify({ title: task }),
@@ -20,3 +20,21 @@ export const submitData = async (task: string): Promise<TodoResponse> => {
   return response.json();
 };
 
+
+export const editedData = async (task: string, id: number): Promise<Task> => {
+  const response = await fetch(`https://easydev.club/api/v2/todos/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ title: task }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
+  const aaa = response.json()
+  console.log(aaa, 777);
+  return aaa;
+};

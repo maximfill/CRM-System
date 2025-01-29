@@ -3,20 +3,28 @@ import Header from './components/Header';
 import Statuses from './components/Statuses';
 import TaskComponent from './components/TaskComponent';
 import {useState} from 'react';
-import { TodoResponse } from '../utils/api';
+import { Task } from '../utils/api';
 import { submitData } from '../utils/api';
+import { editedData } from '../utils/api';
 
 const App: React.FC = () => {
-  const [listTask, setListTask] = useState<TodoResponse[]>([]);
+  const [listTask, setListTask] = useState<Task[]>([]);
 
-  function changeName(stateName: string) {
-    setListTask((prevListTask) => [...prevListTask, stateName]);
+  const addEditTask = async (task: string, id: number) => {
+    try {
+      const arrayEdited: Task = await editedData(task, id);
+      setListTask((prevTask) => 
+        prevTask.map((task) => (task.id === id ? arrayEdited : task))
+      );
+    } catch (err) {
+      console.error('Ошибка при редактировании задачи:', err);
+    }
   };
 
   const addTask = async (task: string) => {
     if (task.trim()) {
       try {
-        const arrayNote: TodoResponse = await submitData(task);
+        const arrayNote: Task = await submitData(task);
         setListTask([...listTask, arrayNote]);
       } catch (error) {
         console.error('Ошибка при добавлении задачи:', error);
@@ -29,7 +37,7 @@ const App: React.FC = () => {
       <Header addTask={addTask} />
       <Statuses />
       <main className={styles.main}>
-        <TaskComponent changeName={changeName} listTask={listTask} />
+        <TaskComponent listTask={listTask} addEditTask={addEditTask} />
       </main>
     </div>
   );

@@ -1,7 +1,6 @@
 import styles from '../styles/Header.module.css';
 import ButtonAddTask from './ButtonAddTask';
 import { useState } from 'react';
-import { submitData } from '../../utils/api.js';
 
 interface HeaderProps {
   addTask: (task: string) => void;
@@ -13,7 +12,6 @@ const Header: React.FC<HeaderProps> = ({ addTask }) => {
   const newAddTask = async () => {
     if (inputField.trim()) {
       try {
-        await submitData(inputField);
         addTask(inputField);
         setInputField('');
       } catch (error) {
@@ -24,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ addTask }) => {
         }
       }
     }
-  };
+  }; 
 
   return (
     <form className={styles.header}>
