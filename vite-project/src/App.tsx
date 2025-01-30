@@ -6,6 +6,7 @@ import {useState} from 'react';
 import { Task } from '../utils/api';
 import { submitData } from '../utils/api';
 import { editedData } from '../utils/api';
+import { requestDeleteTask } from '../utils/api';
 
 const App: React.FC = () => {
   const [listTask, setListTask] = useState<Task[]>([]);
@@ -32,12 +33,21 @@ const App: React.FC = () => {
     }
   };
 
+  const deleteTask = async (taskId: number) => {
+    try {
+      await requestDeleteTask(taskId);
+      setListTask((prevTask) => prevTask.filter((task) => task.id !== taskId));
+    } catch(error) {
+      console.log('Ошибка при удалении', error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <Header addTask={addTask} />
       <Statuses />
       <main className={styles.main}>
-        <TaskComponent listTask={listTask} addEditTask={addEditTask} />
+        <TaskComponent listTask={listTask} addEditTask={addEditTask} deleteTask={deleteTask} />
       </main>
     </div>
   );

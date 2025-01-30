@@ -4,6 +4,11 @@ export interface Task {
   id: number;
 }
 
+export interface TaskDelete {
+  id: number;
+}
+
+
 export const submitData = async (task: string): Promise<Task> => {
   const response = await fetch("https://easydev.club/api/v2/todos", {
     method: "POST",
@@ -34,7 +39,19 @@ export const editedData = async (task: string, id: number): Promise<Task> => {
     throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
   }
 
-  const aaa = response.json()
-  console.log(aaa, 777);
-  return aaa;
+  return response.json();
 };
+
+export const requestDeleteTask = async (id: number) => {
+  const response = await fetch(`https://easydev.club/api/v2/todos/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
+  }
+
+}

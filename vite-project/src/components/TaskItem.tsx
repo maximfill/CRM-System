@@ -7,9 +7,11 @@ import { Task } from '../../utils/api';
 interface TodoItemProps {
   task: Task;
   addEditTask: (task: string, id: number) => void;
+  deleteTask: (id: number) => void;
 }
 
-const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask }) => {
+
+const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask, deleteTask }) => {
   const [stateName, setStateName] = useState<string>(task.title);
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -27,6 +29,8 @@ const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask }) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setStateName(event.target.value);
   }
+
+
 
   return (
     <form className={styles.containerTask}>
@@ -63,7 +67,7 @@ const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask }) => {
         </button>
       )}
 
-      <button className={styles.buttonDelete} type="button">
+      <button className={styles.buttonDelete} type="button" onClick={() => deleteTask(task.id)}>
         <img src={iconsDelete} alt="Delete" className={styles.icon} />
       </button>
     </form>
