@@ -10,7 +10,7 @@ interface TaskComponentProps {
 
 
 
-const TaskComponent: React.FC<TaskComponentProps> = ({ listTask, addEditTask, deleteTask }) => {
+const TaskComponent: React.FC<TaskComponentProps> = ({ listTask, addEditTask, deleteTask}) => {
 
   return (
     <div className={styles.listTask}>

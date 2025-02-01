@@ -2,7 +2,7 @@ import styles from '../src/styles/App.module.css';
 import Header from './components/Header';
 import Statuses from './components/Statuses';
 import TaskComponent from './components/TaskComponent';
-import {useState} from 'react';
+import {useState } from 'react';
 import { Task } from '../utils/api';
 import { submitData } from '../utils/api';
 import { editedData } from '../utils/api';
@@ -10,6 +10,7 @@ import { requestDeleteTask } from '../utils/api';
 
 const App: React.FC = () => {
   const [listTask, setListTask] = useState<Task[]>([]);
+  // const [previousState, setPreviousState] = useState<Task|null>(null);
 
   const addEditTask = async (task: string, id: number) => {
     try {
@@ -42,12 +43,13 @@ const App: React.FC = () => {
     }
   };
 
+
   return (
     <div className={styles.container}>
       <Header addTask={addTask} />
       <Statuses />
       <main className={styles.main}>
-        <TaskComponent listTask={listTask} addEditTask={addEditTask} deleteTask={deleteTask} />
+        <TaskComponent listTask={listTask} addEditTask={addEditTask} deleteTask={deleteTask}/>
       </main>
     </div>
   );

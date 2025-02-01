@@ -50,6 +50,14 @@
   font-size: 50px;
 }
 
+.buttonSave {
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(241, 88, 6);
+  font-size: 40px;
+}
+
 .listTask {
   display: flex;
   flex-direction: column;

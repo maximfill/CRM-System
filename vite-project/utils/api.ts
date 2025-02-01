@@ -53,5 +53,4 @@ export const requestDeleteTask = async (id: number) => {
   if (!response.ok) {
     throw new Error(`Ошибка: ${response.status} - ${response.statusText}`);
   }
-
-}
+};
