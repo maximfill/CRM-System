@@ -2,6 +2,7 @@ export interface Task {
   title: string;
   completed: boolean;
   id: number;
+  isDone: boolean;
 }
 
 export interface TaskDelete {
@@ -26,10 +27,10 @@ export const submitData = async (task: string): Promise<Task> => {
 };
 
 
-export const editedData = async (task: string, id: number): Promise<Task> => {
+export const editedData = async (task: string, id: number, isDone: boolean ): Promise<Task> => {
   const response = await fetch(`https://easydev.club/api/v2/todos/${id}`, {
     method: "PUT",
-    body: JSON.stringify({ title: task }),
+    body: JSON.stringify({ title: task, isDone }),
     headers: {
       "Content-Type": "application/json",
     },

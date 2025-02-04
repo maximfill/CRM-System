@@ -6,22 +6,22 @@ import { Task } from '../../utils/api';
 
 interface TodoItemProps {
   task: Task;
-  addEditTask: (task: string, id: number) => void;
+  addEditTask: (task: string, id: number, isDone: boolean) => Promise<void>;
   deleteTask: (id: number) => void;
-  // copyTask: (task: Task) => void;
-  // cancelEditing: () => void;
-}
+  updateStatus: (task: string, id: number, isDone: boolean) => Promise<void>;
+};
 
-const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask, deleteTask }) => {
+const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask, deleteTask, updateStatus }) => {
   const [stateName, setStateName] = useState<string>(task.title);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [previousState, setPreviousState] = useState<Task|null>(null);
+  const [checked, setChecked] = useState<boolean>(false);
 
   const editNote = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     try {
-      await addEditTask(stateName, task.id);
+      await addEditTask(stateName, task.id, task.isDone);
       setIsEditing(false);
     } catch (err) {
       console.error('Ошибка при редактировании задачи:', err);
@@ -31,8 +31,6 @@ const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask, deleteTask }) =>
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setStateName(event.target.value);
   };
-
-
 
   const cancelEditing = () => {
     if(previousState) {
@@ -47,7 +45,13 @@ const TaskItem: React.FC<TodoItemProps> = ({ task, addEditTask, deleteTask }) =>
         className={styles.input}
         type="checkbox"
         id={`task-${task.id}`}
-        checked={task.completed}
+        checked={checked}
+        onChange = {() => {
+          const statysCheckend = !checked;
+          setChecked(statysCheckend);
+          updateStatus(task.title, task.id, statysCheckend)
+          }
+        }
         name="task"
       />
       

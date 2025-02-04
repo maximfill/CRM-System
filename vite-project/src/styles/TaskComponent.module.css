@@ -24,6 +24,11 @@
   font-size: 20px;
 }
 
+.input:checked + span {
+	text-decoration: line-through;
+}
+
+
 .icon {
   width: 50px;
 }
@@ -46,16 +51,14 @@
   padding: 0;
   border: none;
   cursor: pointer;
-  background-color: rgb(15, 133, 60);
-  font-size: 50px;
+  background-color: rgb(168, 170, 246);
+  font-size: 35px;
 }
 
-.buttonSave {
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  background-color: rgb(241, 88, 6);
-  font-size: 40px;
+
+.buttonSave:hover {
+  color: rgb(246, 247, 188);
+  text-decoration: underline;
 }
 
 .listTask {

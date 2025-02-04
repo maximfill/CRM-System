@@ -27,14 +27,17 @@ const Header: React.FC<HeaderProps> = ({ addTask }) => {
   return (
     <form className={styles.header}>
       <input
-        className={styles.textarea}
+        className={styles.input}
         placeholder="Task to be done..."
         value={inputField}
         type="text"
         id="task-id"
         name="task"
+        minLength={2}
+        maxLength={64}
         onChange={(e) => setInputField(e.target.value)}
-      />
+      /> 
+      {inputField.length > 0 && inputField.length < 2 && <div className={styles.error}>Ошибка: минимум 2 символа</div>}
       <ButtonAddTask newAddTask={newAddTask} />
     </form>
   );
