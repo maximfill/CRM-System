@@ -13,6 +13,7 @@ interface TaskComponentProps {
 
 const TaskComponent: React.FC<TaskComponentProps> = ({ addEditTask, deleteTask, updateStatus, currentTasks}) => {
 
+
   return (
     <div className={styles.listTask}>
       {currentTasks.map((task) => (
